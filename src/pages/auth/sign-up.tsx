@@ -1,15 +1,17 @@
+import { useMutation } from '@tanstack/react-query'
 import { Helmet } from 'react-helmet-async'
 import { useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
+import { registerRestaurant } from '@/api/register-restaurant'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 
 const signUpForm = z.object({
-  restarantName: z.string(),
+  restaurantName: z.string(),
   managerName: z.string(),
   email: z.string().email(),
   phone: z.string(),
@@ -26,20 +28,29 @@ export function SignUp() {
     formState: { isSubmitting },
   } = useForm<SignUpForm>()
 
-  async function handleSignUp(data: SignUpForm) {
+  const { mutateAsync: registerRestauranFn } = useMutation({
+    mutationFn: registerRestaurant,
+  })
+
+  async function handleSignUp({
+    restaurantName,
+    managerName,
+    phone,
+    email,
+  }: SignUpForm) {
     try {
-      console.log(data)
-      await new Promise((resolve) => setTimeout(resolve, 2000))
+      await registerRestauranFn({ restaurantName, managerName, phone, email })
       toast.success('Restaurante cadastrado com sucesso!.', {
         action: {
           label: 'Login',
-          onClick: () => navigate('/sign-in'),
+          onClick: () => navigate(`/sign-in?email=${email}`),
         },
       })
     } catch (error) {
       toast.error('Erro ao cadastrar restaurante.')
     }
   }
+
   return (
     <>
       <Helmet title="Cadastro" />
@@ -58,11 +69,11 @@ export function SignUp() {
           </div>
           <form className="space-y-4" onSubmit={handleSubmit(handleSignUp)}>
             <div className="space-y-2">
-              <Label htmlFor="restarantName">Nome do estabelecimento</Label>
+              <Label htmlFor="restaurantName">Nome do estabelecimento</Label>
               <Input
-                id="restarantName"
+                id="restaurantName"
                 type="text"
-                {...register('restarantName')}
+                {...register('restaurantName')}
               />
             </div>
 
