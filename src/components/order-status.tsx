@@ -1,4 +1,4 @@
-type OrderStatus =
+export type OrderStatus =
   | 'pending'
   | 'canceled'
   | 'processing'
@@ -9,35 +9,35 @@ interface OrderStatusProps {
   status: OrderStatus
 }
 
-export const OrderStatusMap: Record<OrderStatus, string> = {
-  canceled: 'Cancelado',
+const orderStatusMap: Record<OrderStatus, string> = {
   pending: 'Pendente',
-  delivered: 'Entregue',
-  delivering: 'Em entrega',
+  canceled: 'Cancelado',
   processing: 'Em preparo',
+  delivering: 'Em entrega',
+  delivered: 'Entregue',
 }
 
 export function OrderStatus({ status }: OrderStatusProps) {
   return (
     <div className="flex items-center gap-2">
-      {status === 'pending' && (
+      {['pending'].includes(status) && (
         <span className="h-2 w-2 rounded-full bg-slate-400" />
       )}
 
-      {status === 'canceled' && (
+      {['canceled'].includes(status) && (
         <span className="h-2 w-2 rounded-full bg-rose-500" />
       )}
 
-      {status === 'delivered' && (
-        <span className="h-2 w-2 rounded-full bg-emerald-400" />
+      {['processing', 'delivering'].includes(status) && (
+        <span className="h-2 w-2 rounded-full bg-amber-500" />
       )}
 
-      {['delivering, porcessing'].includes(status) && (
-        <span className="h-2 w-2 rounded-full bg-amber-400" />
+      {['delivered'].includes(status) && (
+        <span className="h-2 w-2 rounded-full bg-emerald-500" />
       )}
 
-      <span className="font-medium text-muted-foreground ">
-        {OrderStatusMap[status]}
+      <span className="font-medium text-muted-foreground">
+        {orderStatusMap[status]}
       </span>
     </div>
   )

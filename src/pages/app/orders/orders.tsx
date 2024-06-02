@@ -72,7 +72,7 @@ export function Orders() {
               <TableBody>
                 {result &&
                   result.orders.map((data) => (
-                    <OrderTableRow key={data.orderId} orders={data} />
+                    <OrderTableRow key={data.orderId} order={data} />
                   ))}
               </TableBody>
             </Table>
