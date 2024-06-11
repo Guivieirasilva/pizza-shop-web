@@ -61,8 +61,6 @@ describe('Pagination', () => {
 
     await user.click(nextPageButton)
 
-    console.log(onPageChangeCallback.mock.calls)
-
     expect(onPageChangeCallback).toHaveBeenCalledWith(4)
   })
 
