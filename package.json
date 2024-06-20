@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:test": "vite --port 5078 --mode test",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
@@ -52,6 +53,7 @@
     "zod": "^3.22.5"
   },
   "devDependencies": {
+    "@playwright/test": "^1.44.1",
     "@rocketseat/eslint-config": "^2.2.2",
     "@types/node": "^20.11.25",
     "@types/react": "^18.2.56",
@@ -60,10 +62,16 @@
     "autoprefixer": "^10.4.18",
     "eslint": "^8.57.0",
     "eslint-plugin-simple-import-sort": "^12.0.0",
+    "msw": "^2.3.1",
     "postcss": "^8.4.35",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.2.2",
     "vite": "^5.1.4",
     "vitest": "^1.6.0"
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
   }
 }
