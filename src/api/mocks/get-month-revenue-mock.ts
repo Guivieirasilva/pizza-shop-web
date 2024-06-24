@@ -6,7 +6,7 @@ export const getMonthRevenueOrdersAmountMock = http.get<
   never,
   never,
   GetMonthRevenueResponse
->('/metrics/month-canceled-orders-amount', () => {
+>('/metrics/month-receipt', () => {
   return HttpResponse.json({
     receipt: 59000,
     diffFromLastMonth: -40,
