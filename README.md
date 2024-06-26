@@ -5,6 +5,7 @@ Este projeto foi desenvolvido em ReactJS e utiliza diversas tecnologias modernas
 ## Tecnologias Utilizadas
 
 - **ReactJS**: Biblioteca JavaScript para construção de interfaces de usuário.
+- **React Query**: Biblioteca JavaScript para otimizar o desempenho da aplicação ao lidar com dados dinâmicos e cache.
 - **shacnUI**: Componentes UI para React que oferecem um design consistente e agradável.
 - **React Hook Form**: Biblioteca para formulários no React com suporte a validação.
 - **zod**: Biblioteca para validação de esquemas de dados em TypeScript.
